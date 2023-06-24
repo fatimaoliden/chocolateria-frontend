@@ -29,4 +29,26 @@ export class UserService {
       responseType: 'text',
     });
   }
+
+  public forAdmin() {
+    return this.httpclient.get(this.PATH_OF_API + '/forAdmin', {
+      responseType: 'text',
+    });
+  }
+
+  public roleMatch(allowedRoles: string[]): boolean {
+    const userRoles: any[] = this.userAuthService.getRoles();
+  
+    if (userRoles && userRoles.length > 0) {
+      for (let i = 0; i < userRoles.length; i++) {
+        for (let j = 0; j < allowedRoles.length; j++) {
+          if (userRoles[i].roleName === allowedRoles[j]) {
+            return true;
+          }
+        }
+      }
+    }
+  
+    return false;
+  }
 }

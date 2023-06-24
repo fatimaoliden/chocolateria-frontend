@@ -40,7 +40,7 @@ export class ProductService {
     return this.httpClient.get<Product[]>("http://localhost:9090/getAllProducts?pageNumber="+pageNumber+"&searchKey="+searchKeyword);
   }
 
-  public getProductDetailsById(productId: number) {
+  public getProductDetailsById(productId: any) {
     return this.httpClient.get<Product>("http://localhost:9090/getProductDetailsById/"+productId);
   }
 

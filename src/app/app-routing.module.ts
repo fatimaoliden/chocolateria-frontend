@@ -1,3 +1,6 @@
+import { ProductResolveService } from './product-resolve.service';
+import { AuthGuard } from './auth/auth.guard';
+import { NewProductComponent } from './new-product/new-product.component';
 import { RegistroComponent } from './registro/registro.component';
 import { LoginComponent } from './login/login.component';
 import { NgModule } from '@angular/core';
@@ -10,7 +13,16 @@ const routes: Routes = [
   {
     path: "register",
     component: RegistroComponent
-  }
+  },
+  {
+    path: "addNewProduct",
+    component: NewProductComponent,
+    canActivate: [AuthGuard],
+    data: { roles: ["Admin"] },
+    resolve: {
+      product: ProductResolveService,
+    },
+  },
 ];
 
 @NgModule({
